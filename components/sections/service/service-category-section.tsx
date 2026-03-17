@@ -44,9 +44,11 @@ export const ServiceCategorySection: React.FC<ServiceCategorySectionProps> = ({
             <h4 className='text-[24px] font-semibold capitalize'>
               {item.title}
             </h4>
-            <p className='text-[18px] line-clamp-3 text-[#B4AA9B]'>
-              {item.description}
-            </p>
+            {item.description ? (
+              <p className='text-[18px] line-clamp-3 text-[#B4AA9B]'>
+                {item.description}
+              </p>
+            ) : null}
             <div className='flex items-center justify-between text-[#DAD7CD] text-[16px] font-semibold'>
               <div className='text-[24px] font-semibold'>
                 {item.price}
@@ -54,7 +56,11 @@ export const ServiceCategorySection: React.FC<ServiceCategorySectionProps> = ({
                   {item.currency}
                 </span>
               </div>
-              <button type='button' className='cursor-pointer'>
+              <button
+                type='button'
+                className='cursor-pointer'
+                aria-label={`Thêm dịch vụ ${item.title} vào đặt lịch`}
+              >
                 <span className='inline-flex items-center'>
                   <Plus className='size-8 text-white' />
                 </span>
@@ -68,7 +74,7 @@ export const ServiceCategorySection: React.FC<ServiceCategorySectionProps> = ({
 
   return (
     <article
-      className='grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-16 items-start'
+      className='grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-16 items-start scroll-mt-24 md:scroll-mt-28'
       id={id}
       data-service-section='true'
       data-label={label}

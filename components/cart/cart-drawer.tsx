@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import {
   Drawer,
@@ -9,7 +10,14 @@ import {
   DrawerTitle,
 } from '@/components/ui/drawer'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
-import { ChevronRight, Clock, MoveLeft, MoveRight, X } from 'lucide-react'
+import {
+  ChevronRight,
+  Clock,
+  MoveLeft,
+  MoveRight,
+  ShoppingBag,
+  X,
+} from 'lucide-react'
 
 interface CartItem {
   id: string
@@ -120,7 +128,7 @@ const timeSlots: TimeSlot[] = [
 ]
 
 const currency = (value: number) =>
-  `${value.toLocaleString('vi-VN', { maximumFractionDigits: 0 })} đ`
+  `${value.toLocaleString('vi-VN', { maximumFractionDigits: 0 })} ₫`
 
 export const CartDrawer = ({
   open,
@@ -219,149 +227,176 @@ export const CartDrawer = ({
                   }}
                 >
                   <section className='w-1/2 p-4 h-full overflow-y-auto'>
-                    {items.map((item) => (
-                      <div key={item.id} className='pb-6'>
-                        <div className='flex gap-4 items-center'>
-                          <div className='shrink-0 w-16 h-16 md:w-20 md:h-20'>
-                            <Image
-                              alt={item.name}
-                              className='w-16 h-16 md:w-20 md:h-20 object-cover'
-                              src={item.image}
-                              width={80}
-                              height={80}
-                              unoptimized
-                            />
-                          </div>
-
-                          <div className='flex-1 min-w-0 flex flex-col gap-3'>
-                            <div className='flex justify-between items-start gap-2'>
-                              <p className='text-[13px] md:text-sm font-semibold text-[#0A0C11]'>
-                                {item.name}
-                              </p>
-                              <button
-                                aria-label='Xoa dich vu'
-                                className='size-4 flex items-center justify-center text-gray-500 hover:opacity-90 active:scale-[0.96] cursor-pointer'
-                                onClick={() => handleRemove(item.id)}
-                                type='button'
-                              >
-                                <X className='size-4 stroke-[1.5]' />
-                              </button>
+                    {items.length === 0 ? (
+                      <div className='h-full min-h-80 flex flex-col items-center justify-center text-center px-4'>
+                        <div className='size-14 rounded-full bg-black/5 flex items-center justify-center'>
+                          <ShoppingBag className='size-6 text-[#A38B72]' />
+                        </div>
+                        <div className='mt-4 text-[#0A0C11] font-semibold text-[18px]'>
+                          Giỏ hàng trống
+                        </div>
+                        <div className='mt-2 text-[#6B7280] text-[14px] leading-relaxed max-w-[26ch]'>
+                          Hãy chọn dịch vụ bạn muốn trải nghiệm để bắt đầu đặt
+                          lịch.
+                        </div>
+                        <div className='mt-6 flex items-center gap-3'>
+                          <DrawerClose className='inline-flex items-center justify-center px-4 py-2 border border-[#824C08] text-[#824C08] hover:bg-black/5 active:scale-[0.98]'>
+                            Đóng
+                          </DrawerClose>
+                          <Link
+                            href='/vi/service'
+                            className='inline-flex items-center justify-center px-4 py-2 bg-[#824C08] text-[#E5E3DC] hover:bg-[#5b4421] active:scale-[0.98]'
+                            onClick={() => onOpenChange(false)}
+                          >
+                            Chọn dịch vụ
+                          </Link>
+                        </div>
+                      </div>
+                    ) : (
+                      items.map((item) => (
+                        <div key={item.id} className='pb-6'>
+                          <div className='flex gap-4 items-center'>
+                            <div className='shrink-0 w-16 h-16 md:w-20 md:h-20'>
+                              <Image
+                                alt={item.name}
+                                className='w-16 h-16 md:w-20 md:h-20 object-cover'
+                                src={item.image}
+                                width={80}
+                                height={80}
+                                unoptimized
+                              />
                             </div>
 
-                            <div className='flex justify-between items-center'>
-                              <p className='text-sm text-[#0A0C11]'>
-                                {currency(item.price)}
-                              </p>
-                              {item.effects?.length ? (
-                                <div className='inline-flex items-center gap-1 text-sm text-[#6B7280]'>
-                                  <Clock className='size-3.5' />
-                                  <span>
-                                    {item.time ? `${item.time} phút` : ''}
-                                  </span>
-                                </div>
-                              ) : item.showCounter ? (
-                                <div
-                                  className='inline-flex items-center border border-[#625b5a] text-[#625b5a] select-none px-2 py-2 rounded-full text-[14px]'
-                                  role='spinbutton'
-                                  aria-valuenow={item.quantity}
-                                  aria-valuemin={1}
-                                  aria-valuemax={99}
-                                  aria-disabled={false}
+                            <div className='flex-1 min-w-0 flex flex-col gap-3'>
+                              <div className='flex justify-between items-start gap-2'>
+                                <p className='text-[13px] md:text-sm font-semibold text-[#0A0C11]'>
+                                  {item.name}
+                                </p>
+                                <button
+                                  aria-label='Xoa dich vu'
+                                  className='size-4 flex items-center justify-center text-gray-500 hover:opacity-90 active:scale-[0.96] cursor-pointer'
+                                  onClick={() => handleRemove(item.id)}
+                                  type='button'
                                 >
-                                  <button
-                                    type='button'
-                                    aria-label='decrement'
-                                    className={`flex items-center justify-center w-5 h-5 ${
-                                      item.quantity <= 1
-                                        ? 'opacity-40 cursor-not-allowed'
-                                        : 'cursor-pointer'
-                                    }`}
-                                    onClick={() =>
-                                      handleChangeQuantity(item.id, -1)
-                                    }
-                                    disabled={item.quantity <= 1}
+                                  <X className='size-4 stroke-[1.5]' />
+                                </button>
+                              </div>
+
+                              <div className='flex justify-between items-center'>
+                                <p className='text-sm text-[#0A0C11]'>
+                                  {currency(item.price)}
+                                </p>
+                                {item.effects?.length ? (
+                                  <div className='inline-flex items-center gap-1 text-sm text-[#6B7280]'>
+                                    <Clock className='size-3.5' />
+                                    <span>
+                                      {item.time ? `${item.time} phút` : ''}
+                                    </span>
+                                  </div>
+                                ) : item.showCounter ? (
+                                  <div
+                                    className='inline-flex items-center border border-[#625b5a] text-[#625b5a] select-none px-2 py-2 rounded-full text-[14px]'
+                                    role='spinbutton'
+                                    aria-valuenow={item.quantity}
+                                    aria-valuemin={1}
+                                    aria-valuemax={99}
+                                    aria-disabled={false}
                                   >
-                                    <span className='leading-none text-base'>
+                                    <button
+                                      type='button'
+                                      aria-label='decrement'
+                                      className={`flex items-center justify-center w-5 h-5 ${
+                                        item.quantity <= 1
+                                          ? 'opacity-40 cursor-not-allowed'
+                                          : 'cursor-pointer'
+                                      }`}
+                                      onClick={() =>
+                                        handleChangeQuantity(item.id, -1)
+                                      }
+                                      disabled={item.quantity <= 1}
+                                    >
+                                      <span className='leading-none text-base'>
+                                        -
+                                      </span>
+                                    </button>
+                                    <input
+                                      inputMode='numeric'
+                                      pattern='[0-9]*'
+                                      className='mx-4 text-center font-medium bg-transparent outline-none w-10'
+                                      aria-label='quantity'
+                                      value={item.quantity}
+                                      readOnly
+                                    />
+                                    <button
+                                      type='button'
+                                      aria-label='increment'
+                                      className='flex items-center justify-center w-5 h-5 cursor-pointer'
+                                      onClick={() =>
+                                        handleChangeQuantity(item.id, 1)
+                                      }
+                                    >
+                                      <span className='leading-none text-base'>
+                                        +
+                                      </span>
+                                    </button>
+                                  </div>
+                                ) : (
+                                  <div className='text-sm text-[#6B7280]'>
+                                    <span className='flex items-center gap-1'>
+                                      <Clock className='size-3.5' />
+                                      {item.time ? `${item.time} phút` : ''}
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          {item.effects?.length ? (
+                            <div className='mt-3 pl-13 space-y-3'>
+                              {item.effects.map((effect) => (
+                                <div
+                                  key={effect.id}
+                                  className='flex items-center justify-between gap-2'
+                                >
+                                  <div className='flex items-center gap-2'>
+                                    <Image
+                                      alt={effect.label}
+                                      className='size-10 object-cover'
+                                      src={effect.image}
+                                      width={40}
+                                      height={40}
+                                      unoptimized
+                                    />
+                                    <p className='text-[13px] text-[#5f6368]'>
+                                      Hiệu ứng:{' '}
+                                      <span className='font-semibold text-[#333]'>
+                                        {effect.label}
+                                      </span>
+                                    </p>
+                                  </div>
+                                  <div className='inline-flex items-center border border-[#625b5a] text-[#625b5a] select-none px-2 py-1.5 rounded-full text-[14px]'>
+                                    <span className='w-4 text-center opacity-40'>
                                       -
                                     </span>
-                                  </button>
-                                  <input
-                                    inputMode='numeric'
-                                    pattern='[0-9]*'
-                                    className='mx-4 text-center font-medium bg-transparent outline-none w-10'
-                                    aria-label='quantity'
-                                    value={item.quantity}
-                                    readOnly
-                                  />
-                                  <button
-                                    type='button'
-                                    aria-label='increment'
-                                    className='flex items-center justify-center w-5 h-5 cursor-pointer'
-                                    onClick={() =>
-                                      handleChangeQuantity(item.id, 1)
-                                    }
-                                  >
-                                    <span className='leading-none text-base'>
-                                      +
+                                    <span className='mx-3 w-4 text-center'>
+                                      {effect.quantity}
                                     </span>
-                                  </button>
+                                    <span className='w-4 text-center'>+</span>
+                                  </div>
                                 </div>
-                              ) : (
-                                <div className='text-sm text-[#6B7280]'>
-                                  <span className='flex items-center gap-1'>
-                                    <Clock className='size-3.5' />
-                                    {item.time ? `${item.time} phút` : ''}
-                                  </span>
-                                </div>
-                              )}
+                              ))}
                             </div>
-                          </div>
+                          ) : null}
                         </div>
-                        {item.effects?.length ? (
-                          <div className='mt-3 pl-13 space-y-3'>
-                            {item.effects.map((effect) => (
-                              <div
-                                key={effect.id}
-                                className='flex items-center justify-between gap-2'
-                              >
-                                <div className='flex items-center gap-2'>
-                                  <Image
-                                    alt={effect.label}
-                                    className='size-10 object-cover'
-                                    src={effect.image}
-                                    width={40}
-                                    height={40}
-                                    unoptimized
-                                  />
-                                  <p className='text-[13px] text-[#5f6368]'>
-                                    Hiệu ứng:{' '}
-                                    <span className='font-semibold text-[#333]'>
-                                      {effect.label}
-                                    </span>
-                                  </p>
-                                </div>
-                                <div className='inline-flex items-center border border-[#625b5a] text-[#625b5a] select-none px-2 py-1.5 rounded-full text-[14px]'>
-                                  <span className='w-4 text-center opacity-40'>
-                                    -
-                                  </span>
-                                  <span className='mx-3 w-4 text-center'>
-                                    {effect.quantity}
-                                  </span>
-                                  <span className='w-4 text-center'>+</span>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        ) : null}
-                      </div>
-                    ))}
+                      ))
+                    )}
                   </section>
 
                   <section className='w-1/2 p-4 h-full overflow-y-auto'>
                     <div className='text-[#0A0C11]'>
                       <div className='pt-6 flex flex-col gap-5'>
                         <div className='relative'>
-                          <p className='text-xs text-brand-800'>
+                          <p className='text-xs text-[#4B3E1B]'>
                             Tên khách hàng
                           </p>
                           <div className='relative'>
@@ -391,7 +426,7 @@ export const CartDrawer = ({
                         </div>
 
                         <div className='relative'>
-                          <p className='text-xs text-brand-800'>
+                          <p className='text-xs text-[#4B3E1B]'>
                             Số điện thoại
                           </p>
                           <div className='relative'>
@@ -422,7 +457,7 @@ export const CartDrawer = ({
                       </div>
 
                       <div className='pt-4'>
-                        <p className='text-xs text-brand-800'>Chọn ngày</p>
+                        <p className='text-xs text-[#4B3E1B]'>Chọn ngày</p>
                         <div className='pt-2'>
                           <div className='flex gap-3 overflow-x-auto no-scrollbar pb-2'>
                             {dateOptions.map((dateOption) => {
@@ -456,7 +491,7 @@ export const CartDrawer = ({
                       </div>
 
                       <div className='pt-5'>
-                        <p className='text-xs mb-2 text-brand-800'>
+                        <p className='text-xs mb-2 text-[#4B3E1B]'>
                           Chọn khung giờ
                         </p>
                         <div className='grid grid-cols-4 gap-3'>
@@ -496,39 +531,56 @@ export const CartDrawer = ({
                 <div className='p-4'>
                   {step === 'cart' ? (
                     <>
-                      <div className='flex items-center justify-between mb-3'>
-                        <p className='text-[15px] text-[#888888]'>
-                          Kỹ thuật viên
-                        </p>
-                        <div className='flex items-center gap-2 text-[#1F1F1F]'>
-                          <Image
-                            alt='Kỹ thuật viên'
-                            src='/assets/images/technician.png'
-                            width={28}
-                            height={28}
-                            className='size-7 rounded-full object-cover'
-                            unoptimized
-                          />
-                          <span className='text-base'>Võ Thị Bích Phượng</span>
-                          <ChevronRight className='size-3 text-[#AD8B6C]' />
-                        </div>
-                      </div>
-                      <div className='flex items-center justify-between mb-4'>
-                        <p className='text-[15px]'>Tổng thanh toán</p>
-                        <p className='text-[#F36363] font-semibold'>
-                          {currency(total)}
-                        </p>
-                      </div>
-                      <button
-                        className='inline-flex items-center gap-3 font-medium transition-colors duration-200 cursor-pointer bg-[#824C08] text-[#E5E3DC] hover:bg-[#5b4421] px-5 py-3 text-[14px] md:text-[16px] w-full justify-between hover:opacity-90 active:scale-[0.98] active:shadow-sm'
-                        type='button'
-                        onClick={() => setStep('booking')}
-                      >
-                        <span className='inline-flex items-center'>
-                          Tiếp Tục
-                        </span>
-                        <MoveRight className='size-6 text-[#FAF5EB]' />
-                      </button>
+                      {items.length > 0 ? (
+                        <>
+                          <div className='flex items-center justify-between mb-3'>
+                            <p className='text-[15px] text-[#888888]'>
+                              Kỹ thuật viên
+                            </p>
+                            <div className='flex items-center gap-2 text-[#1F1F1F]'>
+                              <Image
+                                alt='Kỹ thuật viên'
+                                src='/assets/images/technician.png'
+                                width={28}
+                                height={28}
+                                className='size-7 rounded-full object-cover'
+                                unoptimized
+                              />
+                              <span className='text-base'>
+                                Võ Thị Bích Phượng
+                              </span>
+                              <ChevronRight className='size-3 text-[#AD8B6C]' />
+                            </div>
+                          </div>
+                          <div className='flex items-center justify-between mb-4'>
+                            <p className='text-[15px]'>Tổng thanh toán</p>
+                            <p className='text-[#F36363] font-semibold'>
+                              {currency(total)}
+                            </p>
+                          </div>
+                          <button
+                            className='inline-flex items-center gap-3 font-medium transition-colors duration-200 cursor-pointer bg-[#824C08] text-[#E5E3DC] hover:bg-[#5b4421] px-5 py-3 text-[14px] md:text-[16px] w-full justify-between hover:opacity-90 active:scale-[0.98] active:shadow-sm'
+                            type='button'
+                            onClick={() => setStep('booking')}
+                          >
+                            <span className='inline-flex items-center'>
+                              Tiếp Tục
+                            </span>
+                            <MoveRight className='size-6 text-[#FAF5EB]' />
+                          </button>
+                        </>
+                      ) : (
+                        <Link
+                          href='/vi/service'
+                          className='inline-flex items-center gap-3 font-medium transition-colors duration-200 cursor-pointer bg-[#824C08] text-[#E5E3DC] hover:bg-[#5b4421] px-5 py-3 text-[14px] md:text-[16px] w-full justify-between hover:opacity-90 active:scale-[0.98] active:shadow-sm'
+                          onClick={() => onOpenChange(false)}
+                        >
+                          <span className='inline-flex items-center'>
+                            Chọn dịch vụ
+                          </span>
+                          <MoveRight className='size-6 text-[#FAF5EB]' />
+                        </Link>
+                      )}
                     </>
                   ) : (
                     <div className='flex gap-3 justify-between'>
@@ -581,7 +633,7 @@ export const CartDrawer = ({
           <h2 className='font-mtdalatsans mt-6 text-center text-3xl md:text-[40px] leading-none tracking-[0.01em] capitalize text-[#0A0C11]'>
             Gửi Yêu Cầu Thành Công!
           </h2>
-          <p className='mt-6 text-center text-base md:text-[24px] leading-[1.36] text-[#4B5563]'>
+          <p className='mt-6 text-center text-[24px] leading-[1.36] text-[#715E28]'>
             Cảm ơn bạn đã đặt dịch vụ tại The OM Lounge. Chúng tôi đã nhận được
             thông tin đặt lịch từ bạn và sẽ liên hệ lại trong thời gian sớm
             nhất.

@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 export const CtaSection: React.FC = () => {
   return (
@@ -22,15 +23,13 @@ export const CtaSection: React.FC = () => {
           những điều nhỏ nhất và lan tỏa đến cả tâm hồn.
         </p>
         <div className='pt-10'>
-          <a href='/vi/service/'>
-            <button
-              type='button'
-              className='inline-flex items-center justify-center gap-3 font-medium transition-colors duration-200 cursor-pointer bg-white text-brown-0 hover:bg-[#FCE48C] hover:text-[#824C08] px-5 py-3 text-[14px] md:text-[16px]'
-              aria-label='Đặt lịch hẹn tại The OM Lounge'
-            >
-              <span className='inline-flex items-center'>TRẢI NGHIỆM NGAY</span>
-            </button>
-          </a>
+          <Link
+            href='/vi/service'
+            className='inline-flex items-center justify-center gap-3 font-medium transition-colors duration-200 cursor-pointer bg-white text-brown-0 hover:bg-[#FCE48C] hover:text-[#824C08] px-5 py-3 text-[14px] md:text-[16px]'
+            aria-label='Đặt lịch hẹn tại The OM Lounge'
+          >
+            <span className='inline-flex items-center'>TRẢI NGHIỆM NGAY</span>
+          </Link>
         </div>
       </div>
     </section>

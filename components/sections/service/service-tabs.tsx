@@ -6,28 +6,28 @@ import type { ServiceTab } from '@/types/service'
 
 interface ServiceTabsProps {
   tabs: ServiceTab[]
-  activeId: string
+  activeId?: string
+  query: string
+  onQueryChange: (value: string) => void
+  onTabSelect: (id: string) => void
 }
 
-export const ServiceTabs: React.FC<ServiceTabsProps> = ({ tabs, activeId }) => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const headerOffset = 100
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
-    }
-  }
+export function ServiceTabs({
+  tabs,
+  activeId,
+  query,
+  onQueryChange,
+  onTabSelect,
+}: ServiceTabsProps) {
   return (
     <div className='pt-6 pb-2 bg-[#614F38] md:bg-transparent md:py-12 sticky md:relative top-0'>
       <div className='px-3 md:px-10 lg:px-14 xl:px-20'>
         <div className='flex flex-col md:flex-row md:items-end justify-between gap-6'>
-          <div className='order-2 md:order-1 flex items-center gap-4 md:gap-6 overflow-x-auto'>
+          <div
+            className='order-2 md:order-1 flex items-center gap-4 md:gap-6 overflow-x-auto'
+            role='tablist'
+            aria-label='Danh mục dịch vụ'
+          >
             {tabs.map((tab, index) => {
               const isActive = tab.id === activeId
               const isLast = index === tabs.length - 1
@@ -35,7 +35,10 @@ export const ServiceTabs: React.FC<ServiceTabsProps> = ({ tabs, activeId }) => {
               return (
                 <div key={tab.id} className='flex items-center gap-4 py-3'>
                   <button
-                    onClick={() => scrollToSection(tab.id)}
+                    type='button'
+                    role='tab'
+                    aria-selected={isActive}
+                    onClick={() => onTabSelect(tab.id)}
                     className={`uppercase text-[12px] md:text-base xl:text-[24px] truncate transition-colors cursor-pointer font-medium ${
                       isActive
                         ? 'text-[#FCE48C]'
@@ -61,6 +64,8 @@ export const ServiceTabs: React.FC<ServiceTabsProps> = ({ tabs, activeId }) => {
                 placeholder='Tìm kiếm'
                 className='w-full bg-transparent outline-none placeholder:text-[#AFB3BB] text-white'
                 type='text'
+                value={query}
+                onChange={(e) => onQueryChange(e.target.value)}
               />
               <Search className='size-6' />
             </div>

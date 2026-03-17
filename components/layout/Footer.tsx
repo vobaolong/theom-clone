@@ -74,9 +74,9 @@ export const Footer: React.FC = () => {
                   </div>
                   <div className='mt-2 grid grid-cols-2 text-[#F5EAD6] w-60.75'>
                     <div className='truncate'>Thứ 2 - Thứ 6:</div>
-                    <div className='text-right'>09:00 - 19:00</div>
+                    <div>09:00 - 19:00</div>
                     <div className='truncate'>Thứ 7 - Chủ nhật:</div>
-                    <div className='text-right'>09:00 - 20:00</div>
+                    <div>09:00 - 20:00</div>
                   </div>
                 </div>
               </div>

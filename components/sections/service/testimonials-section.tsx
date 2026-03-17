@@ -16,7 +16,7 @@ interface TestimonialsSectionProps {
 }
 
 export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
-  items = testimonialsMock
+  items = testimonialsMock,
 }) => {
   return (
     <section
@@ -27,17 +27,17 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           'linear-gradient(175.08deg, rgba(129, 105, 75, 0.2) 3.96%, rgb(97, 79, 56) 78.5%), url("/assets/images/image-02.png")',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center'
+        backgroundPosition: 'center center',
       }}
     >
       <div className='relative z-10'>
         <div className='text-center mb-12 md:mb-16'>
-          <div className='text-white text-[24px] font-normal md:leading-16 lg:leading-18 tracking-[0.2em] uppercase'>
+          <div className='text-white text-[24px] font-normal md:leading-16 lg:leading-18 tracking-[0.2em] uppercase font-libre-franklin'>
             NHẬN XÉT TỪ
           </div>
           <h2
             id='testimonials-title'
-            className='text-white text-[72px] font-mtdalatsans font-normal leading-[72px]'
+            className='text-white text-[72px] font-mtdalatsans font-normal leading-18'
           >
             Khách Hàng
           </h2>
@@ -53,29 +53,24 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
             loop={true}
             autoplay={{
               delay: 4000,
-              disableOnInteraction: false
+              disableOnInteraction: false,
             }}
             pagination={{
               clickable: true,
-              renderBullet: function (index, className) {
-                return `<span class="${className} w-6! h-6! mx-1! opacity-100! bg-transparent! border border-transparent rounded-full inline-flex! items-center justify-center transition-all duration-300 [&.swiper-pagination-bullet-active]:border-white/60! [&.swiper-pagination-bullet-active>span]:bg-white">
-                  <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-colors duration-300"></span>
-                </span>`
-              }
             }}
             breakpoints={{
               640: {
                 slidesPerView: 1.5,
-                spaceBetween: 20
+                spaceBetween: 20,
               },
               768: {
                 slidesPerView: 2,
-                spaceBetween: 30
+                spaceBetween: 30,
               },
               1024: {
                 slidesPerView: 3,
-                spaceBetween: 40
-              }
+                spaceBetween: 40,
+              },
             }}
             className='testimonials-swiper pt-8 pb-16 md:pb-24 [&_.swiper-wrapper]:items-end [&_.swiper-pagination]:bottom-0! [&_.swiper-slide]:mb-12'
           >
