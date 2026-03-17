@@ -1,22 +1,4 @@
-export interface ServiceItem {
-  id: string
-  title: string
-  description?: string
-  price: number
-  currency: 'k'
-  sectionId: 'combo' | 'medicure' | 'pedicure' | 'effect' | 'drinks'
-}
-
-export interface ServiceSection {
-  id: string
-  label: string
-  image: string
-}
-
-export interface ServiceResponse {
-  sections: ServiceSection[]
-  items: ServiceItem[]
-}
+import type { ServiceResponse } from '@/types/service'
 
 export const servicesMock: ServiceResponse = {
   sections: [
@@ -24,23 +6,23 @@ export const servicesMock: ServiceResponse = {
     {
       id: 'medicure',
       label: 'MEDICURE',
-      image: '/assets/images/medicure.png',
+      image: '/assets/images/medicure.png'
     },
     {
       id: 'pedicure',
       label: 'PEDICURE',
-      image: '/assets/images/pedicure.png',
+      image: '/assets/images/pedicure.png'
     },
     {
       id: 'effect',
       label: 'HIỆU ỨNG',
-      image: '/assets/images/effect.png',
+      image: '/assets/images/effect.png'
     },
     {
       id: 'drinks',
       label: 'DRINKS',
-      image: '/assets/images/drink.jpg',
-    },
+      image: '/assets/images/drink.jpg'
+    }
   ],
   items: [
     {
@@ -49,7 +31,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'combo',
+      sectionId: 'combo'
     },
     {
       id: 'combo-2',
@@ -57,7 +39,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'combo',
+      sectionId: 'combo'
     },
     {
       id: 'combo-3',
@@ -65,7 +47,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'combo',
+      sectionId: 'combo'
     },
     {
       id: 'combo-4',
@@ -73,7 +55,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'combo',
+      sectionId: 'combo'
     },
     {
       id: 'medicure-1',
@@ -81,7 +63,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'medicure',
+      sectionId: 'medicure'
     },
     {
       id: 'medicure-2',
@@ -89,7 +71,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'medicure',
+      sectionId: 'medicure'
     },
     {
       id: 'medicure-3',
@@ -97,7 +79,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'medicure',
+      sectionId: 'medicure'
     },
     {
       id: 'medicure-4',
@@ -105,7 +87,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'medicure',
+      sectionId: 'medicure'
     },
     {
       id: 'medicure-5',
@@ -113,7 +95,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'medicure',
+      sectionId: 'medicure'
     },
     {
       id: 'medicure-6',
@@ -121,7 +103,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'medicure',
+      sectionId: 'medicure'
     },
     {
       id: 'medicure-7',
@@ -129,7 +111,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'medicure',
+      sectionId: 'medicure'
     },
     {
       id: 'pedicure-1',
@@ -137,7 +119,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'pedicure',
+      sectionId: 'pedicure'
     },
     {
       id: 'pedicure-2',
@@ -145,7 +127,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'pedicure',
+      sectionId: 'pedicure'
     },
     {
       id: 'pedicure-3',
@@ -153,7 +135,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'pedicure',
+      sectionId: 'pedicure'
     },
     {
       id: 'pedicure-4',
@@ -161,7 +143,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'pedicure',
+      sectionId: 'pedicure'
     },
     {
       id: 'effect-1',
@@ -169,7 +151,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'effect',
+      sectionId: 'effect'
     },
     {
       id: 'effect-2',
@@ -177,7 +159,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'effect',
+      sectionId: 'effect'
     },
     {
       id: 'effect-3',
@@ -185,7 +167,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'effect',
+      sectionId: 'effect'
     },
     {
       id: 'effect-4',
@@ -193,7 +175,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'effect',
+      sectionId: 'effect'
     },
     {
       id: 'effect-5',
@@ -201,7 +183,7 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'effect',
+      sectionId: 'effect'
     },
     {
       id: 'effect-6',
@@ -209,49 +191,49 @@ export const servicesMock: ServiceResponse = {
       description: 'Làm mới màu sắc (Mani hoặc Pedi)...',
       price: 390,
       currency: 'k',
-      sectionId: 'effect',
+      sectionId: 'effect'
     },
     {
       id: 'drinks-1',
       title: 'Latte',
       price: 50,
       currency: 'k',
-      sectionId: 'drinks',
+      sectionId: 'drinks'
     },
     {
       id: 'drinks-2',
       title: 'Espresso',
       price: 50,
       currency: 'k',
-      sectionId: 'drinks',
+      sectionId: 'drinks'
     },
     {
       id: 'drinks-3',
       title: 'Americano',
       price: 50,
       currency: 'k',
-      sectionId: 'drinks',
+      sectionId: 'drinks'
     },
     {
       id: 'drinks-4',
       title: 'Cappuccino',
       price: 50,
       currency: 'k',
-      sectionId: 'drinks',
+      sectionId: 'drinks'
     },
     {
       id: 'drinks-5',
       title: 'Milkshake',
       price: 50,
       currency: 'k',
-      sectionId: 'drinks',
+      sectionId: 'drinks'
     },
     {
       id: 'drinks-6',
       title: 'Juice',
       price: 50,
       currency: 'k',
-      sectionId: 'drinks',
-    },
-  ],
+      sectionId: 'drinks'
+    }
+  ]
 }

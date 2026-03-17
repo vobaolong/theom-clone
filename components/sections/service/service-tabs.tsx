@@ -2,11 +2,7 @@
 
 import React from 'react'
 import { Search } from 'lucide-react'
-
-export interface ServiceTab {
-  id: string
-  label: string
-}
+import type { ServiceTab } from '@/types/service'
 
 interface ServiceTabsProps {
   tabs: ServiceTab[]

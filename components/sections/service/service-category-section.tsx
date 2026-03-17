@@ -1,14 +1,7 @@
 import { Plus } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
-
-export interface ServiceItem {
-  id: string
-  title: string
-  description: string
-  price: number
-  currency: 'k'
-}
+import type { ServiceItem } from '@/types/service'
 
 interface ServiceCategorySectionProps {
   id: string

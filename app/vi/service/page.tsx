@@ -1,12 +1,11 @@
 import { ServiceHero } from '@/components/sections/service/service-hero'
-import {
-  ServiceCategorySection,
-  type ServiceItem
-} from '@/components/sections/service/service-category-section'
-import {
-  ServiceTabs,
-  type ServiceTab
-} from '@/components/sections/service/service-tabs'
+import { ServiceCategorySection } from '@/components/sections/service/service-category-section'
+import type {
+  ServiceItem,
+  ServiceSection,
+  ServiceTab
+} from '@/types/service'
+import { ServiceTabs } from '@/components/sections/service/service-tabs'
 import { TestimonialsSection } from '@/components/sections/service/testimonials-section'
 import { CtaSection } from '@/components/sections/service/cta-section'
 import Image from 'next/image'
@@ -15,15 +14,15 @@ import { getServices } from '@/lib/services/get-services'
 export default async function ServicePage() {
   const data = await getServices()
 
-  const tabs: ServiceTab[] = data.sections.map((section) => ({
+  const tabs: ServiceTab[] = data.sections.map((section: ServiceSection) => ({
     id: section.id,
     label: section.label
   }))
 
   const sectionsWithItems = data.sections
-    .map((section) => ({
+    .map((section: ServiceSection) => ({
       section,
-      items: data.items.filter((item) => item.sectionId === section.id)
+      items: data.items.filter((item: ServiceItem) => item.sectionId === section.id)
     }))
     .filter(({ items }) => items.length > 0)
 

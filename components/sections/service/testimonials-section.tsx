@@ -4,72 +4,19 @@ import Image from 'next/image'
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay } from 'swiper/modules'
+import { testimonialsMock } from '@/lib/mock/testimonials'
+import type { Testimonial } from '@/types/testimonial'
 
-// Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-
-interface Testimonial {
-  id: string
-  name: string
-  role?: string
-  text: string
-  image: string
-  avatar: string
-}
 
 interface TestimonialsSectionProps {
   items?: Testimonial[]
 }
 
-const DEFAULT_TESTIMONIALS: Testimonial[] = [
-  {
-    id: '1',
-    name: 'Thuỳ Đỗ',
-    text: 'Mỗi lần ghé The OM Lounge là một lần mình tự thưởng cho bản thân. Mình rất thích...',
-    image: '/assets/images/review-pic-1.png',
-    avatar: '/assets/images/cus-1.png'
-  },
-  {
-    id: '2',
-    name: 'John Doe',
-    text: 'Mỗi lần ghé The OM Lounge là một lần mình tự thưởng cho bản thân. Mình rất thích...',
-    image: '/assets/images/review-pic-2.png',
-    avatar: '/assets/images/cus-2.png'
-  },
-  {
-    id: '3',
-    name: 'John Doe',
-    text: 'Mỗi lần ghé The OM Lounge là một lần mình tự thưởng cho bản thân. Mình rất thích...',
-    image: '/assets/images/review-pic-3.png',
-    avatar: '/assets/images/cus-3.png'
-  },
-  {
-    id: '4',
-    name: 'Thuỳ Đỗ',
-    text: 'Mỗi lần ghé The OM Lounge là một lần mình tự thưởng cho bản thân. Mình rất thích...',
-    image: '/assets/images/review-pic-2.png',
-    avatar: '/assets/images/cus-2.png'
-  },
-  {
-    id: '5',
-    name: 'John Doe',
-    text: 'Mỗi lần ghé The OM Lounge là một lần mình tự thưởng cho bản thân. Mình rất thích...',
-    image: '/assets/images/review-pic-2.png',
-    avatar: '/assets/images/cus-2.png'
-  },
-  {
-    id: '6',
-    name: 'John Doe',
-    text: 'Mỗi lần ghé The OM Lounge là một lần mình tự thưởng cho bản thân. Mình rất thích...',
-    image: '/assets/images/review-pic-3.png',
-    avatar: '/assets/images/cus-3.png'
-  }
-]
-
 export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
-  items = DEFAULT_TESTIMONIALS
+  items = testimonialsMock
 }) => {
   return (
     <section
@@ -85,12 +32,12 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
     >
       <div className='relative z-10'>
         <div className='text-center mb-12 md:mb-16'>
-          <div className='text-white text-[48px] font-normal md:leading-16 lg:leading-18 tracking-[0.2em] uppercase'>
+          <div className='text-white text-[24px] font-normal md:leading-16 lg:leading-18 tracking-[0.2em] uppercase'>
             NHẬN XÉT TỪ
           </div>
           <h2
             id='testimonials-title'
-            className='text-white text-[128px] font-mtdalatsans font-normal leading-[128px]'
+            className='text-white text-[72px] font-mtdalatsans font-normal leading-[72px]'
           >
             Khách Hàng
           </h2>
@@ -168,15 +115,15 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
 
                         {/* Text content */}
                         <div className='flex flex-col flex-1 min-w-0'>
-                          <h3 className='text-white text-[16px] md:text-[20px] font-bold leading-tight mb-2'>
+                          <h3 className='text-white text-[24px] font-bold leading-tight mb-2'>
                             {item.name}
                           </h3>
-                          <p className='text-white text-[14px] md:text-[16px] font-normal leading-relaxed mb-3 line-clamp-3'>
+                          <p className='text-white text-[16px] font-normal leading-relaxed mb-3 line-clamp-3'>
                             {item.text}
                           </p>
                           <button
                             type='button'
-                            className='text-[#BC978C] underline text-[14px] md:text-[16px] w-fit transition-colors duration-200 hover:text-[#D8B7A9] self-start'
+                            className='text-[#BC978C] underline text-[16px] w-fit transition-colors duration-200 hover:text-[#D8B7A9] self-start'
                           >
                             Xem thêm
                           </button>
