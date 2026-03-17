@@ -6,7 +6,7 @@ export const CtaSection: React.FC = () => {
       className='relative flex flex-col items-center justify-center text-center py-16 md:py-44.5 bg-cover bg-no-repeat bg-center'
       aria-labelledby='cta-title'
       style={{
-        backgroundImage: 'url("/assets/images/image-02.png")',
+        backgroundImage: 'url("/assets/images/image-02.png")'
       }}
     >
       <div className='absolute inset-0 bg-[#523C14A3]' />

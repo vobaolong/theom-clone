@@ -7,7 +7,7 @@ interface ServiceHeroProps {
 
 export const ServiceHero: React.FC<ServiceHeroProps> = ({
   title = 'Dịch Vụ',
-  backgroundImage = '/image/service/image-01.png',
+  backgroundImage = '/image/service/image-01.png'
 }) => {
   return (
     <section aria-labelledby='service-header'>

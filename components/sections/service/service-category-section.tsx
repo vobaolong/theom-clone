@@ -23,7 +23,7 @@ export const ServiceCategorySection: React.FC<ServiceCategorySectionProps> = ({
   label,
   image,
   items,
-  imageOnLeft = true,
+  imageOnLeft = true
 }) => {
   const imageColumn = (
     <div

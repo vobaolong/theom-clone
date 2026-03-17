@@ -85,12 +85,12 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
     >
       <div className='relative z-10'>
         <div className='text-center mb-12 md:mb-16'>
-          <div className='text-white text-[12px] md:text-[20px] lg:text-[24px] font-normal md:leading-16 lg:leading-18 tracking-[0.2em] uppercase'>
+          <div className='text-white text-[48px] font-normal md:leading-16 lg:leading-18 tracking-[0.2em] uppercase'>
             NHẬN XÉT TỪ
           </div>
           <h2
             id='testimonials-title'
-            className='text-white text-[32px] md:text-[56px] lg:text-[72px] font-mtdalatsans font-normal leading-8 md:leading-16 lg:leading-18'
+            className='text-white text-[128px] font-mtdalatsans font-normal leading-[128px]'
           >
             Khách Hàng
           </h2>
@@ -144,7 +144,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                   >
                     <div className='flex flex-col h-full justify-end'>
                       {/* Main image */}
-                      <div className='w-full aspect-4/3 relative overflow-hidden rounded-lg mb-6'>
+                      <div className='w-full aspect-3/4 relative overflow-hidden rounded-none mb-6'>
                         <Image
                           alt={item.name}
                           src={item.image}

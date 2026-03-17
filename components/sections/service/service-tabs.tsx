@@ -23,7 +23,7 @@ export const ServiceTabs: React.FC<ServiceTabsProps> = ({ tabs, activeId }) => {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth',
+        behavior: 'smooth'
       })
     }
   }

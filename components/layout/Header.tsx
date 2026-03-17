@@ -10,7 +10,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { servicesMock } from '@/lib/mock/services'
 import { CartDrawer } from '@/components/cart/cart-drawer'
@@ -20,14 +20,14 @@ const navigation = [
   { name: 'Giới thiệu', href: '/vi/about/' },
   { name: 'Dịch vụ', href: '/vi/service/' },
   { name: 'Blog', href: '/vi/blog/' },
-  { name: 'Liên hệ', href: '/vi/contact/' },
+  { name: 'Liên hệ', href: '/vi/contact/' }
 ]
 
 // Get categories from servicesMock
 const categories = servicesMock.sections.map((section) => ({
   name: section.label,
   sectionId: section.id,
-  href: `/vi/service#${section.id}`,
+  href: `/vi/service#${section.id}`
 }))
 
 const Header = () => {
@@ -84,7 +84,7 @@ const Header = () => {
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: 'smooth',
+      behavior: 'smooth'
     })
 
     window.history.replaceState(null, '', `#${sectionId}`)
@@ -216,7 +216,7 @@ const Header = () => {
         style={{
           zIndex: 99999999,
           isolation: 'isolate',
-          willChange: 'transform, opacity, filter',
+          willChange: 'transform, opacity, filter'
         }}
       >
         <div className='flex items-center justify-between'>
